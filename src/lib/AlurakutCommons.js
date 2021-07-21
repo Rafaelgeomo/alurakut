@@ -49,12 +49,14 @@ export function AlurakutMenu({ githubUser }) {
         </button>
       </div>
       <AlurakutMenuProfileSidebar githubUser={githubUser} />
+      
     </AlurakutMenu.Wrapper>
   )
 }
 AlurakutMenu.Wrapper = styled.header`
   width: 100%;
   background-color: #308BC5;
+
   .alurakutMenuProfileSidebar {
     background: white;
     position: fixed;
@@ -85,6 +87,7 @@ AlurakutMenu.Wrapper = styled.header`
       text-decoration: none;
       font-weight: 800;
     }
+
     hr {
       margin-top: 12px;
       margin-bottom: 8px;
@@ -92,6 +95,7 @@ AlurakutMenu.Wrapper = styled.header`
       border-bottom-color: #ECF2FA;
     }
   }
+
   .container {
     background-color: #308BC5;
     padding: 7px 16px;
@@ -104,6 +108,7 @@ AlurakutMenu.Wrapper = styled.header`
     @media(min-width: 860px) {
       justify-content: flex-start;
     }
+
     button {
       border: 0;
       background: transparent;
@@ -113,6 +118,7 @@ AlurakutMenu.Wrapper = styled.header`
         display: none;
       }
     }
+
     nav {
       display: none;
       @media(min-width: 860px) {
@@ -162,21 +168,18 @@ AlurakutMenu.Logo = styled.img`
   height: 34px;
 `;
 
-function AlurakutMenuProfileSidebar({ githubUser }) {
+export function AlurakutMenuProfileSidebar({ githubUser }) {
   return (
     <div className="alurakutMenuProfileSidebar">
-      <div>
-        <img src={`https://github.com/${githubUser}.png`} style={{ borderRadius: '8px' }} />
-        <hr />
-        <p>
-          <a className="boxLink" href={`https://github.com/${githubUser}`}>
-            @{githubUser}
-          </a>
-        </p>
-        <hr />
-        
-        <AlurakutProfileSidebarMenuDefault />
-      </div>
+      <img src={`https://github.com/${githubUser}.png`} style={{ borderRadius: '8px' }} />
+      <hr />
+      <p>
+        <a className="boxLink" href={`https://github.com/${githubUser}`}>
+          @{githubUser}
+        </a>
+      </p>
+      <hr />
+      <AlurakutProfileSidebarMenuDefault />
     </div>
   )
 }
@@ -243,28 +246,28 @@ export function OrkutNostalgicIconSet(props) {
   return (
     <OrkutNostalgicIconSet.List>
       {[
-        { name: 'Recados', slug: 'recados', icon: 'book' },
-        { name: 'Fotos', slug: 'fotos', icon: 'camera' },
-        { name: 'Videos', slug: 'videos', icon: 'video-camera' },
-        { name: 'Fãs', slug: 'fas', icon: 'star' },
-        { name: 'Mensagens', slug: 'mensagens', icon: 'email' },
-      ].map(({ name, slug, icon }) => (
+        { name: 'Recados', slug: 'recados', icon: 'book', total: 32},
+        { name: 'Fotos', slug: 'fotos', icon: 'camera' , total: 571},
+        { name: 'Videos', slug: 'videos', icon: 'video-camera' , total: 3},
+        { name: 'Fãs', slug: 'fas', icon: 'star' , total: 18},
+        { name: 'Mensagens', slug: 'mensagens', icon: 'email' , total: 273},
+      ].map(({ name, slug, icon , total}) => (
         <li key={`orkut__icon_set__${slug}`}>
           <span style={{ gridArea: 'title' }} className="OrkutNostalgicIconSet__title">
             {name}
           </span>
           <span className="OrkutNostalgicIconSet__number" style={{ gridArea: 'number' }}>
             <img key={`orkut__icon_set__${slug}_img`} className="OrkutNostalgicIconSet__iconSample" src={`https://alurakut.vercel.app/icons/${icon}.svg`} />
-            {props[slug] ? props[slug] : 0}
+            {props[slug] ? props[slug] : total}
           </span>
         </li>
       ))}
       {[
-        { name: 'Confiável', slug: 'confiavel', icon: 'smile' },
-        { name: 'Legal', slug: 'legal', icon: 'cool' },
-        { name: 'Sexy', slug: 'sexy', icon: 'heart' },
-      ].map(({ name, slug, icon }) => {
-        const total = props[slug] ? props[slug] : 2;
+        { name: 'Confiável', slug: 'confiavel', icon: 'smile' , count: 3},
+        { name: 'Legal', slug: 'legal', icon: 'cool' , count: 2},
+        { name: 'Sexy', slug: 'sexy', icon: 'heart' , count: 2},
+      ].map(({ name, slug, icon , count}) => {
+        const total = props[slug] ? props[slug] : count;
         return (
           <li key={`orkut__icon_set__${slug}`}>
             <span className="OrkutNostalgicIconSet__title">
@@ -334,6 +337,8 @@ const AlurakutLoginScreen = css`
     --textQuarternaryColor: #C5C6CA;
     --commonRadius: 8px;
   }
+
+
   .loginScreen {
     padding: 16px;
     max-width: 1110px;
@@ -496,5 +501,6 @@ export const AlurakutStyles = css`
       box-shadow: 0px 0px 5px #33333357;
     }
   }
+
   ${AlurakutLoginScreen}
 `;
