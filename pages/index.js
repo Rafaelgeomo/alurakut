@@ -159,7 +159,7 @@ export async function getServerSideProps(context) {
   const tokenDecode = jwt.decode(token);
   const githubUser = tokenDecode?.githubUser;
 
-  const { isAuthenticated } = await fetch('https://alurakut-self-ten.vercel.app/api/auth', {
+  const { isAuthenticated } = await fetch('http://alurakut-anadezuo.vercel.app/api/auth', {
     headers: {
       Authorization : token
     }
